@@ -1,5 +1,5 @@
 {
     "debug": false,
     "testing": false,
-    "backendUrl": "https://hotelbooker2020.azurewebsites.net/api/v1.0/"
+    "backendUrl": "https://hotelbookerdemo.azurewebsites.net/api/v1.0/"
 }

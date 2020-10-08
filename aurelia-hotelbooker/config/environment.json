@@ -1,5 +1,5 @@
 {
     "debug": true,
     "testing": true,
-    "backendUrl": "https://localhost:5001/api/v1.0/"
+    "backendUrl": "https://hotelbookerdemo.azurewebsites.net/api/v1.0/"
 }
