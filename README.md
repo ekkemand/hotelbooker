@@ -13,3 +13,6 @@ A registered user can only edit its own posted information, nobody else's.
 - The ERD schema of the database - AppERD.jpg
 
 ## Links
+- The ASP app with MVCs: https://hotelbookerdemo.azurewebsites.net
+- Swagger docs: https://hotelbookerdemo.azurewebsites.net/swagger/index.html
+- Frontend app: https://hotelbookerfront.azurewebsites.net
