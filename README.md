@@ -7,8 +7,9 @@ Only the administrators of the page can create and edit the info of the hotels, 
 
 A registered user can only edit its own posted information, nobody else's.
 
-## Projects
+## Projects and files
 - The backend part is in HotelBooker folder
 - The frontend part is in aurelia-hotelbooker folder
+- The ERD schema of the database - AppERD.jpg
 
 ## Links
