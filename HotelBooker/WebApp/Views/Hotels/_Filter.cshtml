@@ -1,0 +1,37 @@
+﻿@model HotelBooker.ViewModels.HotelFilterHelperVM
+
+<a class="btn btn-info" data-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Filters
+</a>
+
+<div class="collapse" id="filters">
+    <form asp-action="Index" method="get">
+        <div class="row">
+            <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <label asp-for="FilterData!.OwnerCompanyId" class="control-label"></label>
+                <select asp-for="FilterData!.OwnerCompanyId" class="form-control" asp-items="Model.OwnerCompanySelectList"></select>
+            </div>
+            <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <label asp-for="FilterData!.HotelConvenienceId" class="control-label"></label>
+                <select asp-for="FilterData!.HotelConvenienceId" class="form-control" asp-items="Model.ConvenienceSelectList"></select>
+            </div>
+            <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <label asp-for="FilterData!.ReviewCategoryId" class="control-label"></label>
+                <select asp-for="FilterData!.ReviewCategoryId" class="form-control" asp-items="Model.ReviewCategorySelectList"></select>
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label asp-for="FilterData!.AlphabeticalOrder" class="control-label"></label>
+                <select asp-for="FilterData!.AlphabeticalOrder" class="form-control" asp-items="Model.AlphabeticalOrderOptions"></select>
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label asp-for="FilterData!.DateEstablished" class="control-label"></label>
+                <select asp-for="FilterData!.DateEstablished" class="form-control" asp-items="Model.EstablishedDateOrderOptions"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-dark"/>
+            <a class="btn btn-secondary" asp-action="Index">Reset filters</a>
+        </div>
+
+    </form>
+</div>

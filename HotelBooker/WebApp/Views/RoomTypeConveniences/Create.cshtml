@@ -1,0 +1,76 @@
+@model HotelBooker.ViewModels.RoomTypeConveniencesCreateEditVM
+
+@{
+    ViewData["Title"] = "New room type convenience";
+}
+
+<h1>Add</h1>
+
+<h4>Add a new room type convenience</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        @* <form asp-action="Create"> *@
+        @*     <div asp-validation-summary="All" class="text-danger"></div> *@
+        @*     <partial name="_CreateEdit"/> *@
+        @*      *@
+        @*     <div class="form-group"> *@
+        @*         <input type="submit" value="Create" class="btn btn-primary" /> *@
+        @*     </div> *@
+        @* </form> *@
+
+        <form asp-action="Create">
+            @if (Model.ConvenienceSelectList == null)
+            {
+                <h3>First choose the hotel</h3>
+                <div class="form-group">
+                    <label asp-for="RoomTypeConvenience.RoomTypeId" class="control-label"></label>
+                    <select asp-for="RoomTypeConvenience.RoomTypeId" class="form-control" asp-items="Model.RoomTypeSelectList"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Next" class="btn btn-outline-primary"/>
+                </div>
+            }
+            else
+            {
+                @if (!Model.ConvenienceSelectList.Any())
+                {
+                    <div class="form-group">
+                        <label asp-for="RoomTypeConvenience.RoomTypeId" class="control-label"></label>
+                        <select asp-for="RoomTypeConvenience.RoomTypeId" class="form-control" asp-items="Model.RoomTypeSelectList"></select>
+                    </div>
+                    <a class="btn btn-outline-primary" asp-action="Create" asp-controller="Conveniences">Add a new convenience</a>
+                }
+                else
+                {
+                    <partial name="_CreateEdit"/>
+                }
+                <div class="form-group mt-4">
+                    <input type="submit" value="Add" class="btn btn-primary"/>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (Model.ConvenienceSelectList == null)
+    {
+        <a asp-controller="RoomTypes" asp-action="Index">Back to list</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-primary" asp-controller="RoomTypes" asp-action="Details"
+           asp-route-Id="@Model.RoomTypeConvenience.RoomTypeId">
+            Back to room type
+        </a>
+    }
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

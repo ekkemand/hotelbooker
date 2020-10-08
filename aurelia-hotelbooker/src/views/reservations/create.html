@@ -1,0 +1,49 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Add</h1>
+
+    <h4>Add a new reservation</h4>
+    <hr/>
+    <div class="alert alert-warning">
+        <h3>Remember, the earliest date to make the reservation to this room type is <strong>${normalizedDate(_params.minDate)}</strong></h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onCreateClicked($event)">
+
+                <div class="form-group">
+                    <label for="startdate" class="control-label">Start date</label>
+                    <input id="startdate" type="date" min="${_minStartDate}" value.bind="_reservation.startDateTime"
+                           class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="enddate" class="control-label">End date</label>
+                    <input id="enddate" type="date" min="${_minStartDate}" value.bind="_reservation.endDateTime"
+                           class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="nrofrooms" class="control-label">Number of rooms</label>
+                    <select id="nrofrooms" value.bind="_reservation.numberOfRooms" class="form-control">
+                        <option repeat.for="number of _roomsCountSelectList" model.bind="number">${number}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input if.bind="!_saving" type="submit" value="Add" class="btn btn-primary"/>
+                    <button if.bind="_saving" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Adding...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: roomtype-details; params.bind: { id: _params.roomTypeId }">Back to room type</a>
+    </div>
+</template>

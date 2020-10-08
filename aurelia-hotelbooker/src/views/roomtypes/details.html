@@ -1,0 +1,169 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <div if.bind="!_loading">
+        <div if.bind="_imagesOfRoom != null && _imagesOfRoom.length > 0" id="carouselExampleControls"
+             class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner myCarousel">
+                <div repeat.for="image of _imagesOfRoom" class="carousel-item ${_imagesOfRoom.indexOf(image) === 0 ? 'active' : ''}">
+                    <img src="${image.url}" class="d-block w-100" alt="${_roomTypeDetails.roomType.type} picture">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div>
+            <h1>${_roomTypeDetails.roomType.type}</h1>
+            <h4>${_roomTypeDetails.roomType.hotelName}</h4>
+            <hr/>
+
+            <div if.bind="_roomTypeDetails.product != null">
+                <h5>Prices for this room type reservation</h5>
+                <h6 class="text-primary">${_roomTypeDetails.product.description}</h6>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Currency
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr repeat.for="price of _roomTypeDetails.prices">
+                        <td>
+                            ${price.value}
+                        </td>
+                        <td>
+                            ${price.currency.name}
+                        </td>
+
+                        <td>
+                            <div if.bind="appState.isAdmin" class="btn-group">
+                                <a route-href="route: price-edit; params.bind: { id: price.id }"
+                                   class="btn btn-outline-info">Edit</a>
+                                <a route-href="route: price-delete; params.bind: { id: price.id }"
+                                   class="btn btn-outline-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div if.bind="_roomTypeDetails.groupedConveniences.length > 0" class="container">
+                <h3 class="row">Room type's conveniences</h3>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" repeat.for="group of _roomTypeDetails.groupedConveniences">
+                        <h5 class="text-info">
+                            <strong>${group.convenienceGroup.name}</strong>
+                        </h5>
+                        <ul>
+                            <li repeat.for="convenience of group.conveniences" class="text-info">${convenience.name}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div if.bind="_roomTypeDetails.product != null" class="alert alert-primary mt-3">
+                <h3 class="alert-heading">Reservations</h3>
+
+                <p if.bind="_roomTypeDetails.availableRooms === 0 && _roomTypeDetails.earliestReservation === undefined">
+                    We are sorry, but reservations for this room type to this hotel are not available yet!
+                </p>
+                <div if.bind="_roomTypeDetails.availableRooms > 0 && earliestReservationToday()">
+                    <p>
+                        Reservations for this room type can be made from <strong>TODAY</strong> for
+                        <strong>
+                            ${_roomTypeDetails.availableRooms} room(s) maximum
+                        </strong>
+                    </p>
+                    <a route-href="route: reservation-create; params.bind: { roomsCount: _roomTypeDetails.availableRooms,
+                 minDate: _roomTypeDetails.earliestReservation, roomTypeId: _roomTypeDetails.roomType.id,
+                 hotelId: _roomTypeDetails.roomType.hotelId}" class="btn btn-outline-primary">
+                        Make a reservation
+                    </a>
+                </div>
+
+                <div if.bind="_roomTypeDetails.availableRooms > 0 && !earliestReservationToday()">
+                    <p>
+                        Reservations for this room type can be made from <strong>
+                        ${normalizedDate(_roomTypeDetails.earliestReservation)}
+                    </strong> for
+                        <strong>${_roomTypeDetails.availableRooms} room(s) maximum</strong>
+                    </p>
+                    <a route-href="route: reservation-create; params.bind: { roomsCount: _roomTypeDetails.availableRooms,
+                 minDate: _roomTypeDetails.earliestReservation, roomTypeId: _roomTypeDetails.roomType.id,
+                 hotelId: _roomTypeDetails.roomType.hotelId}" class="btn btn-outline-primary">
+                        Make a reservation
+                    </a>
+                </div>
+
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a class="btn btn-outline-info" route-href="route: roomtype-edit; params.bind: { id: _roomTypeDetails.roomType.id }">
+                        Edit
+                    </a>
+                    <a route-href="route: roomtypeconvenience-create; params.bind: { roomTypeId: _roomTypeDetails.roomType.id }"
+                       class="btn btn-outline-info">
+                        Add a convenience
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <a class="btn btn-primary" route-href="route: roomtypes-index; params.bind: { hotelId: _roomTypeDetails.roomType.hotelId }">
+                Back to List
+            </a>
+            <a route-href="route: review-create; params.bind: { hotelId: _roomTypeDetails.roomType.hotelId,
+         roomTypeId: _roomTypeDetails.roomType.id}" class="btn btn-info">
+                Add a review
+            </a>
+
+        </div>
+
+        <div if.bind="_roomTypeDetails.reviews != null && _roomTypeDetails.reviews.length > 0" class="container mt-2">
+            <h3>User reviews to the room type</h3>
+            <div class="list-group list-group-flush">
+
+                <div repeat.for="review of _roomTypeDetails.reviews" class="list-group-item">
+                    <div class="${appState.isAuthenticated && appState.userId === review.userId ? 'alert alert-info' : ''}">
+                        <p if.bind="review.reviewCategory != null && review.reviewCategory.accepted"
+                           class="text-primary">From category "${review.reviewCategory.name}"</p>
+
+                        <h5>${review.heading}</h5>
+                        <p class="small">By ${review.userDisplayName}</p>
+                        <p>${review.content}</p>
+
+                        <div if.bind="appState.isAuthenticated">
+                            <div if.bind="appState.isAdmin || appState.userId === review.userId">
+                                <a route-href="route: review-edit; params.bind: { id: review.id }" class="btn btn-info">
+                                    Edit
+                                </a>
+                                <a route-href="route: review-delete; params.bind: { id: review.id }" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

@@ -1,0 +1,60 @@
+<template>
+    <h1>Prices</h1>
+
+    <p>
+        <a route-href="route: price-create;">Add New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Currency
+            </th>
+            <th>
+                Hotel
+            </th>
+
+            <th>
+                Campaign
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="price of _prices">
+            <td>
+                <a route-href="route: price-details; params.bind: { id: price.id }">
+                    ${price.product.name}
+                </a>
+            </td>
+            <td>
+                ${price.value}
+            </td>
+            <td>
+                ${price.currency.name}
+            </td>
+            <td>
+                ${price.hotelName}
+            </td>
+            <td>
+                ${price.campaignId != null ? price.campaign.name : ''}
+            </td>
+
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a route-href="route: price-edit; params.bind: { id: price.id }"
+                       class="btn btn-outline-info">Edit</a>
+                    <a route-href="route: price-delete; params.bind: { id: price.id }" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

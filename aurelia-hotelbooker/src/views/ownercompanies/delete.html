@@ -1,0 +1,31 @@
+<template>
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <div class="alert alert-danger">
+        <h1 class="alert-heading">Delete</h1>
+        <h5>Are you sure you want to delete this?</h5>
+        <h5><strong>Note that this will delete all the hotels associated with that company!</strong></h5>
+        <br>
+
+        <div class="mt-2">
+            <h4>Owner company</h4>
+            <hr>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Name
+                </dt>
+                <dd class="col-sm-10">
+                    ${_ownerCompany.name}
+                </dd>
+            </dl>
+
+            <form submit.trigger="onDeleteClicked($event)">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a class="btn btn-primary" route-href="route: ownercompanies-index; params.bind: { }">Back to List</a>
+            </form>
+
+        </div>
+    </div>
+</template>

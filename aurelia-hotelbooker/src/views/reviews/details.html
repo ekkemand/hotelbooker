@@ -1,0 +1,35 @@
+<template>
+    <h1>Details</h1>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <div if.bind="!_loading">
+        <h4>${_review.heading}</h4>
+        <hr/>
+
+        <dl if.bind="_review.roomTypeId != null" class="row">
+            <dt class="col-sm-2">
+                RoomType
+            </dt>
+            <dd class="col-sm-10">
+                ${_review.roomTypeName}
+            </dd>
+        </dl>
+
+        <div if.bind="_review.reviewCategoryId != null">
+            <p if.bind="_review.reviewCategory.accepted" class="text-primary">
+                From category "${_review.reviewCategory.name}"
+            </p>
+        </div>
+
+        <h5>${_review.heading}</h5>
+        <p class="small">By ${_review.userDisplayName}</p>
+        <p>${_review.content}</p>
+
+    </div>
+    <div if.bind="!_loading">
+        <a route-href="route: review-edit; params.bind: { id: _review.id }" class="btn btn-outline-info">Edit</a>
+        <a route-href="route: review-delete; params.bind: { id: _review.id }" class="btn btn-outline-danger">Delete</a>
+        <a route-href="route: reviews-index;" class="btn btn-primary">Back to List</a>
+    </div>
+</template>

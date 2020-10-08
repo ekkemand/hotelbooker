@@ -1,0 +1,54 @@
+@model IEnumerable<BLL.App.DTO.RoomType>
+
+@{
+    ViewData["Title"] = "Room types";
+}
+
+<h1>Room types</h1>
+
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Create">Add New</a>
+    }
+</p>
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </a>
+                </td>
+
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="btn-group">
+                            <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Sorry... no room types currently available</h3>
+}

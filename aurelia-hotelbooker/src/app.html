@@ -1,0 +1,128 @@
+<template>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" route-href="route: home;">Hotel Booker</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul if.bind="!appState.isAuthenticated" class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-success mr-2"
+                                route-href="route: account-login; params.bind: {}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary"
+                                route-href="route: account-register; params.bind: {}">Register</a>
+                        </li>
+                    </ul>
+
+                    <ul if.bind="appState.isAuthenticated" class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               route-href="route: user-edit; params.bind: {id: appState.userId}"
+                               data-toggle="tooltip" data-placement="bottom" title="View profile">
+                                ${_loggedInUser.displayName}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#" click.delegate="logoutOnClick()"
+                            data-toggle="tooltip" data-placement="bottom" title="Log out">
+                                <img src="/uploads/logout.png" class="nav-icon" alt="logout">
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul if.bind="!appState.isAuthenticated" class="navbar-nav flex-grow-1">
+                        <li class="nav-item active">
+                            <a class="nav-link text-dark" route-href="route: hotels-index;">Hotels</a>
+                        </li>
+                    </ul>
+
+
+                    <ul if.bind="appState.isAuthenticated" class="navbar-nav flex-grow-1">
+                        <li class="nav-item active" if.bind="!appState.isAdmin">
+                            <a class="nav-link text-dark" route-href="route: hotels-index;">Hotels</a>
+                        </li>
+                        <li class="nav-item dropdown" if.bind="appState.isAdmin">
+                            <a class="nav-link dropdown-toggle" href="#"
+                               id="hotelDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hotels
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="roomsDropdown">
+                                <a class="dropdown-item" route-href="route: hotels-index;">Hotels</a>
+                                <a class="dropdown-item" route-href="route: hotelconveniences-index;">Hotel conveniences</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: ownercompanies-index;">Owner companies</a>
+                            </div>
+                        </li>
+                        <li class="nav-item active" if.bind="appState.isAuthenticated">
+                            <a class="nav-link text-dark" route-href="route: reservations-index;">Reservations</a>
+                        </li>
+                        <li class="nav-item active" if.bind="appState.isAuthenticated && !appState.isAdmin">
+                            <a class="nav-link text-dark" route-href="route: reviews-index;">Your reviews</a>
+                        </li>
+                        <li class="nav-item dropdown" if.bind="appState.isAdmin">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" href="#"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Rooms
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="roomsDropdown">
+                                <a class="dropdown-item" route-href="route: rooms-index;">Rooms</a>
+                                <a class="dropdown-item" route-href="route: roomtypes-index;">Room types</a>
+                                <a class="dropdown-item" route-href="route: roomtypeconveniences-index;">Room type conveniences</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: imageofrooms-index;">Image of rooms</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" if.bind="appState.isAdmin">
+                            <a class="nav-link dropdown-toggle" id="conveniencesDropdown" role="button" data-toggle="dropdown"
+                               href="#" aria-haspopup="true" aria-expanded="false">
+                                Conveniences
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="conveniencesDropdown">
+                                <a class="dropdown-item" route-href="route: conveniences-index;">Conveniences</a>
+                                <a class="dropdown-item" route-href="route: hotelconveniences-index;">Hotel conveniences</a>
+                                <a class="dropdown-item" route-href="route: roomtypeconveniences-index;">Room type conveniences</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: conveniencegroups-index;">Convenience groups</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" if.bind="appState.isAdmin">
+                            <a class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-toggle="dropdown"
+                               href="#" aria-haspopup="true" aria-expanded="false">
+                                Admin menu
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="conveniencesDropdown">
+                                <a class="dropdown-item" route-href="route: products-index;">Products</a>
+                                <a class="dropdown-item" route-href="route: productgroups-index;">Product groups</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: prices-index;">Prices</a>
+                                <a class="dropdown-item" route-href="route: currencies-index;">Currencies</a>
+                                <a class="dropdown-item" route-href="route: campaigns-index;">Campaigns</a>
+                                <a class="dropdown-item" route-href="route: conveniencegroups-index;">Convenience groups</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: reviews-index;">Reviews</a>
+                                <a class="dropdown-item" route-href="route: reviewcategories-index;">Review categories</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" route-href="route: users-index;">Users</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main">
+             <router-view></router-view> 
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - WebApp - ekmand app
+        </div>
+    </footer>
+</template>

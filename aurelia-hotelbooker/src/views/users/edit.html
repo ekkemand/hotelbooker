@@ -1,0 +1,74 @@
+<template>
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete your account?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to delete your account?</strong></p>
+                    <p>With deleting your account, all of your reservations will be cancelled, your reviews
+                        and your user information will be deleted!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" click.trigger="onDeleteClicked()" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h1>Edit your data</h1>
+    <hr>
+
+    <form method="post" submit.trigger="onSaveClicked($event)" autocomplete="on">
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="firstname">First name</label>
+                <input id="firstname" class="form-control" type="text" ref="_firstNameField" value.bind="_user.person.firstName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="lastname">Last name</label>
+                <input id="lastname" class="form-control" type="text" ref="_lastNameField" value.bind="_user.person.lastName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="displayname">User display name</label>
+                <input id="displayname" class="form-control" type="text" ref="_displayNameField"
+                       autocomplete="displayname" value.bind="_user.displayName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="birthdate">Birth date</label>
+                <input id="birthdate" class="form-control" type="date" ref="_bDayField" autocomplete="bday"
+                       value.bind="_birthDate" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="nationalid">National ID nr (optional)</label>
+                <input id="nationalid" class="form-control" type="text" ref="_nationalIdNumberField"
+                       value.bind="_user.person.nationalIdNumber">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="phonenumber">Phone number (optional)</label>
+                <input id="phonenumber" class="form-control" type="text" ref="_phoneNumberField"
+                       value.bind="_user.person.phoneNumber" />
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" value="Save" type="submit">
+            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#deleteModal">
+                Delete
+            </button>
+        </div>
+    </form>
+</template>

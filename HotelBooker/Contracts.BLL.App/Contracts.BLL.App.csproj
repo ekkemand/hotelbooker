@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BLL.App.DTO\BLL.App.DTO.csproj" />
+      <ProjectReference Include="..\Contracts.DAL.App\Contracts.DAL.App.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="ee.itcollege.ekmand.BLL.Base" Version="1.0.0" />
+        <PackageReference Include="ee.itcollege.ekmand.Contracts.BLL.Base" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>

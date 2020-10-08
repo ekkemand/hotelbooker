@@ -1,0 +1,36 @@
+<template>
+    <h1>Details</h1>
+
+    <div>
+        <h4>${_imageOfRoom.name}</h4>
+        <hr />
+
+        <img src="${_imageOfRoom.url}" alt="Room type image"/>
+        <dl class="row mt-3">
+            <dt class = "col-sm-2">
+                Hotel
+            </dt>
+            <dd class = "col-sm-10">
+                ${_imageOfRoom.hotelName}
+            </dd>
+            <dt class = "col-sm-2">
+                Room type
+            </dt>
+            <dd class = "col-sm-10">
+                ${_imageOfRoom.roomTypeName}
+            </dd>
+            <dt if.bind="_imageOfRoom.description != null" class = "col-sm-2">
+                Descritpion
+            </dt>
+            <dd if.bind="_imageOfRoom.description != null" class = "col-sm-10">
+                ${_imageOfRoom.description}
+            </dd>
+
+        </dl>
+
+    </div>
+    <div if.bind="appState.isAdmin">
+        <a route-href="route: imageofroom-edit; params.bind: { id: _imageOfRoom.id }" class="btn btn-outline-info">Edit</a>
+        <a route-href="route: imageofrooms-index;" class="btn btn-primary">Back to List</a>
+    </div>
+</template>

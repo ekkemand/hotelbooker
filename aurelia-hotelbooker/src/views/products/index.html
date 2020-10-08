@@ -1,0 +1,39 @@
+<template>
+    <h1>Products</h1>
+
+    <p>
+        <a route-href="route: product-create;">Add New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr repeat.for="product of _products">
+            <td>
+                <a route-href="route: product-details; params.bind: { id: product.id }">
+                    ${product.name}
+                </a>
+            </td>
+
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a route-href="route: product-edit; params.bind: { id: product.id }" class="btn btn-outline-info">
+                        Edit
+                    </a>
+                    <a route-href="route: product-delete; params.bind: { id: product.id }" class="btn btn-outline-danger">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

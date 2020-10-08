@@ -1,0 +1,36 @@
+﻿@model BLL.App.DTO.Product
+
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    @if (Model.Description != null)
+    {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    }
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ProductGroup)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ProductGroup!.Name)
+    </dd>
+    @if (Model.RoomType != null)
+    {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomType!.Type)
+        </dd>
+    }
+
+
+</dl>

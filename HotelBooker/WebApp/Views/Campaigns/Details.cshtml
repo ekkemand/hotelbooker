@@ -1,0 +1,21 @@
+@model BLL.App.DTO.Campaign
+
+@{
+    ViewData["Title"] = "Campaign's details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr/>
+    <partial name="_DetailsDelete"/>
+
+</div>
+<div>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@Model.Id">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>

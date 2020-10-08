@@ -1,0 +1,7 @@
+﻿@model HotelBooker.ViewModels.ReservationRowsCreateEditVM
+
+
+<div class="form-group">
+    <label asp-for="ReservationRow.ReservationId" class="control-label"></label>
+    <select asp-for="ReservationRow.ReservationId" class ="form-control" asp-items="Model.ReservationSelectList"></select>
+</div>

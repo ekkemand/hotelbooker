@@ -1,0 +1,34 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>${_convenienceGroup.name}</h4>
+        <hr/>
+
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Name
+            </dt>
+            <dd class = "col-sm-10">
+                ${_convenienceGroup.name}
+            </dd>
+            <dt class = "col-sm-2">
+                Description
+            </dt>
+            <dd class = "col-sm-10">
+                ${_convenienceGroup.description}
+            </dd>
+        </dl>
+
+    </div>
+    <div>
+        <a class="btn btn-outline-info" route-href="route: conveniencegroup-edit; params.bind: { id: _convenienceGroup.id }">Edit</a>
+        <a class="btn btn-primary" route-href="route: conveniencegroups-index; params.bind: {}">Back to List</a>
+    </div>
+
+</template>

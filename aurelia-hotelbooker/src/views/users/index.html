@@ -1,0 +1,40 @@
+<template>
+    <h1>Users</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Display name
+            </th>
+            <th>
+                Full name
+            </th>
+            <th>
+               Email
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="user of _users">
+            <td>
+                <a route-href="route: user-details; params.bind: { id: user.id }">
+                    ${user.displayName}
+                </a>
+            </td>
+            <td>
+                ${user.person.firstName + ' ' + user.person.lastName}
+            </td>
+            <td>
+                ${user.email}
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a route-href="route: user-delete; params.bind: { id: user.id }" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

@@ -1,0 +1,5 @@
+{
+    "debug": true,
+    "testing": true,
+    "backendUrl": "https://localhost:5001/api/v1.0/"
+}

@@ -1,0 +1,51 @@
+<template>
+    <h1>All reviews</h1>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <div if.bind="!_loading && !appState.isAdmin && _reviews.length === 0">
+        <h5>You have not added any reviews yet.</h5>
+        <p>You can add reviews to hotels or their room types.</p>
+    </div>
+
+    <h5 if.bind="!_loading && appState.isAdmin && _reviews.length === 0">No reviews have been added yet.</h5>
+
+
+    <table class="table" if.bind="!_loading && _reviews.length > 0">
+        <thead>
+        <tr>
+            <th>
+                Heading
+            </th>
+            <th>
+                Hotel
+            </th>
+            <th>
+                User
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="review of _reviews">
+            <td>
+                <a route-href="route: review-details; params.bind: { id: review.id }">
+                    ${review.heading}
+                </a>
+            </td>
+            <td>
+                ${review.hotelName}
+            </td>
+            <td>
+                ${review.userDisplayName}
+            </td>
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a route-href="route: review-edit; params.bind: { id: review.id }" class="btn btn-outline-info">Edit</a>
+                    <a route-href="route: review-delete; params.bind: { id: review.id }" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

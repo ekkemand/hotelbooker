@@ -1,0 +1,80 @@
+@model IEnumerable<BLL.App.DTO.ReviewCategory>
+
+@{
+    ViewData["Title"] = "Review categories";
+}
+
+<h1>Review categories</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+@if (Model.Any(c => c.Accepted == false))
+{
+    <h2 class="text-danger">Waiting for approval</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Where(c => c.Accepted == false))
+        {
+            <tr>
+                <td class="text-danger">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="btn-group">
+                            <a asp-action="Accept" class="btn btn-outline-success" asp-route-id="@item.Id">Accept</a>
+                            <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@if (Model.Any(c => c.Accepted))
+{
+    <h2 class="text-success">Accepted</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Where(c => c.Accepted))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="btn-group">
+                            <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

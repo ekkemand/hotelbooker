@@ -1,0 +1,52 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Add</h1>
+
+    <h4>Add a new room type convenience</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onCreateClicked($event)">
+                <div if.bind="!_isRoomTypeLocked">
+                    <h3>First choose the room type</h3>
+                    <div class="form-group">
+                        <label for="roomtype-selection" class="control-label">Room type</label>
+                        <select id="roomtype-selection" class="form-control" value.bind="_roomTypeId"
+                                required>
+                            <option repeat.for="roomType of _roomTypes" model.bind="roomType.id">${roomType.type}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-primary" click.trigger="onSaveClicked()">Next</button>
+                    </div>
+                </div>
+
+                <div if.bind="_isRoomTypeLocked">
+                    <div if.bind="_conveniences != null && _conveniences.length > 0">
+                        <label for="convenience-selection" class="control-label">Convenience</label>
+                        <select id="convenience-selection" class="form-control" value.bind="_roomTypeConvenience.convenienceId" required >
+                            <option repeat.for="convenience of _conveniences" model.bind="convenience.id">${convenience.name}</option>
+                        </select>
+                    </div>
+                    <div if.bind="_conveniences === null || _conveniences.length === 0">
+                        <a class="btn btn-outline-primary" route-href="route: convenience-create;">
+                            Add a new convenience
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group mt-4">
+                    <input if.bind="_isRoomTypeLocked" type="submit" value="Add" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: roomtypeconveniences-index">Back to conveniences</a>
+    </div>
+</template>

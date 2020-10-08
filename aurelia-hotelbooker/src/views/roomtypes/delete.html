@@ -1,0 +1,39 @@
+<template>
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div class="spinner-border text-primary" if.bind="_loading" role="status"></div>
+    <div if.bind="!_loading">
+        <h4>Room type</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Type
+            </dt>
+            <dd class="col-sm-10">
+                ${_roomTypeDetails.roomType.type}
+            </dd>
+            <dt class="col-sm-2">
+                Description
+            </dt>
+            <dd class="col-sm-10">
+                ${_roomTypeDetails.roomType.description}
+            </dd>
+        </dl>
+
+        <form submit.trigger="onDeleteClicked($event)">
+            <input if.bind="!_deleting" type="submit" value="Delete" class="btn btn-danger" />
+            <button if.bind="_deleting" class="btn btn-danger" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Deleting...
+            </button>
+            <a route-href="route: roomtypes-index; params.bind: { hotelId: _roomType.hotelId }"
+               class="btn btn-primary">Back to List</a>
+        </form>
+
+    </div>
+</template>

@@ -1,0 +1,10 @@
+﻿@model HotelBooker.ViewModels.RoomTypeConveniencesCreateEditVM
+
+<div class="form-group">
+    <label asp-for="RoomTypeConvenience.RoomTypeId" class="control-label"></label>
+    <select asp-for="RoomTypeConvenience.RoomTypeId" class ="form-control" asp-items="Model.RoomTypeSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="RoomTypeConvenience.ConvenienceId" class="control-label"></label>
+    <select asp-for="RoomTypeConvenience.ConvenienceId" class ="form-control" asp-items="Model.ConvenienceSelectList"></select>
+</div>

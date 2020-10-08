@@ -1,0 +1,41 @@
+﻿@model HotelBooker.ViewModels.UsersDetailsVM
+
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.User.DisplayName)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.User.DisplayName)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Person.FirstLastName)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Person.FirstLastName)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.User.Email)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.User.Email)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Person.BirthDate)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Person.BirthDate)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Person.PhoneNumber)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Person.PhoneNumber)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Person.NationalIdNumber)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Person.NationalIdNumber)
+    </dd>
+    
+</dl>

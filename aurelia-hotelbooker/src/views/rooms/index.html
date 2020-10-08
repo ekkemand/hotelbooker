@@ -1,0 +1,52 @@
+<template>
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Rooms</h1>
+
+    <p if.bind="appState.isAdmin">
+        <a route-href="route: room-create;">Add New</a>
+    </p>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <table if.bind="!_loading" class="table">
+        <thead>
+        <tr>
+            <th>
+                Room number
+            </th>
+            <th>
+                Hotel
+            </th>
+            <th>
+                Room type
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="item of _rooms">
+            <td>
+                <a route-href="route: room-details; params.bind: { id: item.id }">
+                    ${item.roomNumber}
+                </a>
+            </td>
+            <td>
+                ${item.hotelName}
+            </td>
+            <td>
+                ${item.roomTypeName}
+            </td>
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a class="btn btn-outline-info" route-href="route: room-edit; params.bind: { id: item.id }">Edit</a>
+                    <a class="btn btn-outline-danger" route-href="route: room-delete; params.bind: { id: item.id }">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

@@ -1,0 +1,70 @@
+@model IEnumerable<BLL.App.DTO.Price>
+
+@{
+    ViewData["Title"] = "Prices";
+}
+
+<h1>Prices</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hotel)
+        </th>
+
+        <th>@Html.DisplayNameFor(model => model.Campaign)</th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Product!.Name)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency!.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel!.Name)
+            </td>
+            <td>
+                @if (item.CampaignId != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Campaign!.Name)
+                }
+            </td>
+
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    <div class="btn-group">
+                        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+<template>
+    <h1>Edit</h1>
+
+    <h4>Room type convenience</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" submit.trigger="onSaveClicked($event)">
+
+                <div class="form-group">
+                    <label for="hotel-selection" class="control-label">Room type</label>
+                    <select id="hotel-selection" class="form-control" value.bind="_roomTypeConvenience.roomTypeId" required >
+                        <option repeat.for="roomType of _roomTypes" model.bind="roomType.id">${roomType.type}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="convenience-selection" class="control-label">Convenience</label>
+                    <select id="convenience-selection" class="form-control" value.bind="_roomTypeConvenience.convenienceId" required >
+                        <option repeat.for="convenience of _conveniences" model.bind="convenience.id">${convenience.name}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: hotelconveniences-index;">Back to List</a>
+    </div>
+</template>

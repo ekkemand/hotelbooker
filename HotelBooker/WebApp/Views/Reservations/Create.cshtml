@@ -1,0 +1,63 @@
+@model HotelBooker.ViewModels.ReservationCreateEditVM
+
+@{
+    ViewData["Title"] = "New reservation";
+}
+
+<h1>Add</h1>
+
+<h4>Add a new reservation</h4>
+<hr/>
+<div class="alert alert-warning">
+    <h3>Remember, the earliest day to make the reservation is @Model.MinDate</h3>
+</div>
+@if (Model.Error != null)
+{
+    <div class="alert alert-danger">
+        @Model.Error
+    </div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Reservation.StartDateTime" class="control-label"></label>
+                <input asp-for="Reservation.StartDateTime" class="form-control"/>
+                <span asp-validation-for="Reservation.StartDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.EndDateTime" class="control-label"></label>
+                <input asp-for="Reservation.EndDateTime" class="form-control"/>
+                <span asp-validation-for="Reservation.EndDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.NumberOfRooms" class="control-label"></label>
+                <select asp-for="Reservation.NumberOfRooms" asp-items="Model.RoomCountSelectList" class="form-control"></select>
+                <span asp-validation-for="Reservation.NumberOfRooms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.HotelId" class="control-label"></label>
+                <select asp-for="Reservation.HotelId" class="form-control" asp-items="Model.HotelSelectList"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Reservation.RoomTypeId" class="control-label"></label>
+                <select asp-for="Reservation.RoomTypeId" class="form-control" asp-items="Model.RoomTypeSelectList"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="RoomTypes" asp-action="Details" asp-route-id="@Model.RoomTypeSelectList?.SelectedValue">Back to room type</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

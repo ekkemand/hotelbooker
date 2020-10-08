@@ -1,0 +1,63 @@
+<template>
+    <h1>Details</h1>
+
+    <div>
+        <h4>${_user.displayName}</h4>
+        <hr/>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                Display name
+            </dt>
+            <dd class="col-sm-10">
+                ${_user.displayName}
+            </dd>
+            <dt class="col-sm-2">
+                Full name
+            </dt>
+            <dd class="col-sm-10">
+                ${_user.person.firstName + ' ' + _user.person.lastName}
+            </dd>
+            <dt class="col-sm-2">
+                Email
+            </dt>
+            <dd class="col-sm-10">
+                ${_user.email}
+            </dd>
+            <dt class="col-sm-2">
+                Birth date
+            </dt>
+            <dd class="col-sm-10">
+                ${_birthDate}
+            </dd>
+            <dt class="col-sm-2">
+                Phone number
+            </dt>
+            <dd class="col-sm-10">
+                ${_user.person.phoneNumber}
+            </dd>
+            <dt class="col-sm-2">
+                National ID number
+            </dt>
+            <dd class="col-sm-10">
+                ${_user.person.nationalIdNumber}
+            </dd>
+
+        </dl>
+        <h3>
+            <strong>User's roles</strong>
+        </h3>
+
+        <ul>
+            <li repeat.for="role of _user.roles">${role}</li>
+        </ul>
+    </div>
+    <div>
+        <a route-href="route: users-index;" class="btn btn-primary">Back to List</a>
+        <button if.bind="_user.roles.includes('admin')" click.trigger="onMakeRegularClicked()" class="btn btn-outline-danger">Make regular</button>
+        <button if.bind="!_user.roles.includes('admin')" click.trigger="onMakeAdminClicked()" class="btn btn-outline-success">Make admin</button>
+        <div class="btn-group">
+            <a route-href="route: user-delete; params.bind: { id: _user.id }" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
+</template>

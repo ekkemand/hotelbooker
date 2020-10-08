@@ -1,0 +1,54 @@
+@model IEnumerable<BLL.App.DTO.ImageOfRoom>
+
+@{
+    ViewData["Title"] = "Images of rooms";
+}
+
+<h1>Images of rooms</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="col-3" src="@item.Url" alt="@item.Name"/>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType!.Type)
+            </td>
+
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    <div class="btn-group">
+                        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

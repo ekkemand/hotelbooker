@@ -1,0 +1,49 @@
+<template>
+    <h1>Add</h1>
+
+    <h4>Add a new room</h4>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onCreateClicked($event)" method="post">
+                <div class="form-group">
+                    <label for="number" class="control-label">Room number</label>
+                    <input id="number" value.bind="_room.roomNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label">Description</label>
+                    <textarea id="description" value.bind="_room.description" class="form-control"></textarea>
+                </div>
+                <div class="form-group" if.bind="_hotelId === null">
+                    <label for="hotelselection" class="control-label">Hotel</label>
+                    <select id="hotelselection" class="form-control" value.bind="_room.hotelId" required >
+                        <option repeat.for="hotel of _hotels" model.bind="hotel.id">${hotel.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roomtypeselection" class="control-label">Room type</label>
+                    <select id="roomtypeselection" class="form-control" value.bind="_room.roomTypeId" required>
+                        <option repeat.for="roomtype of _roomTypes" model.bind="roomtype.id">${roomtype.type}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input if.bind="!_saving" type="submit" value="Add" class="btn btn-primary" />
+                    <button if.bind="_saving" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: rooms-index;">Back to List</a>
+    </div>
+</template>

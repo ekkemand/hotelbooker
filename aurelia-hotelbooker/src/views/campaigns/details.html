@@ -1,0 +1,40 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>${_campaign.name}</h4>
+        <hr/>
+
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Name
+            </dt>
+            <dd class = "col-sm-10">
+                ${_campaign.name}
+            </dd>
+            <dt class = "col-sm-2">
+                Discount factor
+            </dt>
+            <dd class = "col-sm-10">
+                ${_campaign.discountFactor}
+            </dd>
+            <dt class = "col-sm-2">
+                Description
+            </dt>
+            <dd class = "col-sm-10">
+                ${_campaign.description}
+            </dd>
+        </dl>
+
+    </div>
+    <div>
+        <a class="btn btn-outline-info" route-href="route: campaign-edit; params.bind: { id: _campaign.id }">Edit</a>
+        <a class="btn btn-primary" route-href="route: campaigns-index; params.bind: {}">Back to List</a>
+    </div>
+
+</template>

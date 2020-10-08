@@ -1,0 +1,48 @@
+@using Extensions
+@model HotelBooker.ViewModels.UsersDetailsVM
+
+@{
+    ViewData["Title"] = "User's details";
+}
+
+@if (User.UserId() == Model.User.Id || User.IsInRole("admin"))
+{
+    <h1>Details</h1>
+    
+    <div>
+        <h4>User</h4>
+        <hr/>
+        <partial name="_DetailsDelete"/>
+
+
+        <h3>
+            <strong>User's roles</strong>
+        </h3>
+
+        <ul>
+            @foreach (var role in Model.RolesList!)
+            {
+                <li>@role</li>
+            }
+        </ul>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        @if (Model.RolesList.Contains("admin"))
+        {
+            <a asp-action="RemoveAdmin" class="btn btn-outline-danger" asp-route-userId="@Model.User.Id">Make regular</a>
+        }
+        else
+        {
+            <a asp-action="MakeAdmin" class="btn btn-outline-success" asp-route-userId="@Model.User.Id">Make admin</a>
+        }
+        <div class="btn-group">
+            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@Model.User.Id">Delete</a>
+        </div>
+    </div>
+}
+else
+{
+    <h1 class="text-danger">Access denied</h1>
+    <p class="text-danger">You do not have access to this resource.</p>
+}

@@ -1,0 +1,17 @@
+﻿@model HotelBooker.ViewModels.RoomTypesCreateEditVM
+
+<div class="form-group">
+    <label asp-for="RoomType.Type" class="control-label"></label>
+    <input asp-for="RoomType.Type" class="form-control" />
+    <span asp-validation-for="RoomType.Type" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="RoomType.Description" class="control-label"></label>
+    <input asp-for="RoomType.Description" class="form-control" />
+    <span asp-validation-for="RoomType.Description" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="RoomType.HotelId" class="control-label"></label>
+    <select asp-for="RoomType.HotelId" class ="form-control" asp-items="Model.HotelSelectList"></select>
+</div>

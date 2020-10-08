@@ -1,0 +1,46 @@
+@model IEnumerable<BLL.App.DTO.RoomTypeConvenience>
+
+@{
+    ViewData["Title"] = "Room type conveniences";
+}
+
+<h1>Room type conveniences</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Convenience)
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType!.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Convenience!.Name)
+            </td>
+
+            @if (User.IsInRole("admin"))
+            {
+                <div class="btn-group">
+                    <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                </div>
+            }
+        </tr>
+    }
+    </tbody>
+</table>

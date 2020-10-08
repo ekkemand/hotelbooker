@@ -1,0 +1,65 @@
+@model HotelBooker.ViewModels.HotelConveniencesCreateEditVM
+
+@{
+    ViewData["Title"] = "New hotel convenience";
+}
+
+<h1>Add</h1>
+
+<h4>Add a new hotel convenience</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-action="Create">
+            @if (Model.ConvenienceSelectList == null)
+            {
+                <h3>First choose the hotel</h3>
+                <div class="form-group">
+                    <label asp-for="HotelConvenience.HotelId" class="control-label"></label>
+                    <select asp-for="HotelConvenience.HotelId" class="form-control" asp-items="Model.HotelSelectList"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Next" class="btn btn-outline-primary"/>
+                </div>
+            }
+            else
+            {
+                @if (!Model.ConvenienceSelectList.Any())
+                {
+                    <div class="form-group">
+                        <label asp-for="HotelConvenience.HotelId" class="control-label"></label>
+                        <select asp-for="HotelConvenience.HotelId" class="form-control" asp-items="Model.HotelSelectList"></select>
+                    </div>
+                    <a class="btn btn-outline-primary" asp-action="Create" asp-controller="Conveniences">Add a new convenience</a>
+                }
+                else
+                {
+                    <partial name="_CreateEdit"/>
+                }
+                <div class="form-group mt-4">
+                    <input type="submit" value="Add" class="btn btn-primary"/>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (Model.ConvenienceSelectList == null)
+    {
+        <a asp-controller="Hotels" asp-action="Index">Back to list</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-primary" asp-controller="Hotels" asp-action="Details"
+           asp-route-Id="@Model.HotelConvenience.HotelId">
+            Back to hotel
+        </a>
+    }
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

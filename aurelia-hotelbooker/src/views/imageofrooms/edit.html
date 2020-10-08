@@ -1,0 +1,45 @@
+<template>
+    <h1>Edit</h1>
+
+    <h4>Image of room</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onSaveClicked($event)">
+
+                <div class="form-group">
+                    <label for="name" class="control-label">Name</label>
+                    <input id="name" class="form-control" value.bind="_imageOfRoom.name" />
+                </div>
+                <div class="form-group">
+                    <label for="url" class="control-label">Picture's URL address</label>
+                    <textarea id="url" class="form-control" value.bind="_imageOfRoom.url"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label">Description</label>
+                    <input id="description" class="form-control" value.bind="_imageOfRoom.description" />
+                </div>
+                <div class="form-group">
+                    <label for="hotelselection" class="control-label">Hotel</label>
+                    <select id="hotelselection" class="form-control" value.bind="_imageOfRoom.hotelId" required >
+                        <option repeat.for="hotel of _hotels" model.bind="hotel.id">${hotel.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roomtypeselection" class="control-label">Room type</label>
+                    <select id="roomtypeselection" class="form-control" value.bind="_imageOfRoom.roomTypeId" required >
+                        <option repeat.for="roomType of _roomTypes" model.bind="roomType.id">${roomType.type}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: imageofrooms-index;">Back to List</a>
+    </div>
+</template>

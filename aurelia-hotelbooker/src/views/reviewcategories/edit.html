@@ -1,0 +1,25 @@
+<template>
+    <h1>Edit</h1>
+
+    <h4>Review category</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" submit.trigger="onSaveClicked($event)">
+
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <input id="name" class="form-control" type="text" value.bind="_reviewCategory.name" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: reviewcategories-index; params.bind: { }">Back to List</a>
+    </div>
+</template>

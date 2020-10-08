@@ -1,0 +1,40 @@
+<template>
+    <h1>Campaigns</h1>
+
+    <p>
+        <a route-href="route: campaign-create; params.bind: { }">Add new</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Discount factor
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="campaign of _campaigns">
+            <td>
+                <a route-href="route: campaign-details; params.bind: { id: campaign.id }">
+                    ${campaign.name}
+                </a>
+            </td>
+            <td>
+                ${campaign.discountFactor}
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-outline-info"
+                       route-href="route: campaign-edit; params.bind: { id: campaign.id }">Edit</a>
+                    <a class="btn btn-outline-danger"
+                       route-href="route: campaign-delete; params.bind: { id: campaign.id }">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

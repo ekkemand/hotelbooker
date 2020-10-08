@@ -1,0 +1,58 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1 if.bind="appState.isAdmin">Reservations</h1>
+    <h1 if.bind="!appState.isAdmin">Your reservations</h1>
+
+    <p>
+        For a new reservation, you can find the most suitable option from
+        <a route-href="route: hotels-index;">the hotels page</a>
+    </p>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <h3 if.bind="!_loading && _reservations.length === 0">There are currently no reservations.</h3>
+    <table class="table" if.bind="!_loading && _reservations.length > 0">
+        <thead>
+            <tr>
+                <th>
+                    Starting date
+                </th>
+                <th>
+                    Expiration date
+                </th>
+                <th>
+                    Hotel
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr repeat.for="reservation of _reservations">
+                <td>
+                    ${normalizedDate(reservation.startDateTime)}
+                </td>
+                <td>
+                    ${normalizedDate(reservation.endDateTime)}
+                </td>
+                <td>
+                    ${reservation.hotel.name}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-outline-info" route-href="route: reservation-details; params.bind: { id: reservation.id }">
+                            Details
+                        </a>
+                        <a class="btn btn-outline-danger" route-href="route: reservation-delete; params.bind: { id: reservation.id }">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</template>

@@ -1,0 +1,24 @@
+<template>
+    <div class="medium-container">
+        <h1>Edit</h1>
+
+        <require from="../../components/alert"></require>
+
+        <alert alert-data.bind="_alert"></alert>
+
+        <h4>${_ownerCompany.name}</h4>
+        <hr/>
+        <form method="post" submit.trigger="onSaveClicked($event)" autocomplete="on">
+            <p>Name</p>
+            <div class="form-row">
+                <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="form-control" type="text" value.bind="_ownerCompany.name" required>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-3">
+                    <button class="btn btn-primary container-item" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
+        <a class="btn btn-outline-info container-item mt-3" route-href="route: ownercompanies-index;">Back to List</a>
+    </div>
+</template>

@@ -1,0 +1,90 @@
+﻿========================================================================================================================
+ DATABASE COMMANDS
+========================================================================================================================
+ADD MIGRATION:
+dotnet ef migrations add InitialDbCreation --project DAL.App.EF --startup-project WebApp
+
+UPDATE DATABASE:
+dotnet ef database update --project DAL.App.EF --startup-project WebApp
+
+DROP DATABASE:
+dotnet ef database drop --project DAL.App.EF --startup-project WebApp
+
+========================================================================================================================
+ GENERATE CONTROLLERS (Change directory to WebApp first)
+========================================================================================================================
+dotnet aspnet-codegenerator controller -name ConveniencesController         -actions -m Convenience             -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ConvenienceGroupsController    -actions -m ConvenienceGroup        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name CurrenciesController           -actions -m Currency                -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name HotelsController               -actions -m Hotel                   -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name HotelConveniencesController    -actions -m HotelConvenience        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name CampaignsController            -actions -m Campaign                -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ImageOfRoomsController         -actions -m ImageOfRoom             -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name InvoicesController             -actions -m Invoice                 -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name InvoiceRowsController          -actions -m InvoiceRow              -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name OwnerCompaniesController       -actions -m OwnerCompany            -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name PaymentsController             -actions -m Payment                 -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name PaymentTypesController         -actions -m PaymentType             -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name PersonsController              -actions -m Person                  -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name PricesController               -actions -m Price                   -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ProductsController             -actions -m Product                 -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ProductGroupsController        -actions -m ProductGroup            -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ReservationsController         -actions -m Reservation             -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ReservationistsController      -actions -m Reservationist          -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ReservationRowsController      -actions -m ReservationRow          -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ResidenciesController          -actions -m Residency               -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ResidentsController            -actions -m Resident                -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name RoomsController                -actions -m Room                    -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name RoomTypesController            -actions -m RoomType                -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name RoomTypeConveniencesController -actions -m RoomTypeConvenience     -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ReviewsController              -actions -m Review                  -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ReviewCategoriesController     -actions -m ReviewCategory          -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name CartsController                -actions -m Cart                    -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name UsersController                -actions -m Domain.App.Identity.AppUser                    -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+
+========================================================================================================================
+ GENERATE API CONTROLLERS (Change directory to WebApp first)
+========================================================================================================================
+dotnet aspnet-codegenerator controller -name ConveniencesController         -actions -m Convenience             -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ConvenienceGroupsController    -actions -m ConvenienceGroup        -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name CurrenciesController           -actions -m Currency                -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name HotelsController               -actions -m Hotel                   -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name HotelConveniencesController    -actions -m HotelConvenience        -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name CampaignsController            -actions -m Campaign                -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ImageOfRoomsController         -actions -m ImageOfRoom             -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name InvoicesController             -actions -m Invoice                 -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name InvoiceRowsController          -actions -m InvoiceRow              -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name OwnerCompaniesController       -actions -m OwnerCompany            -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name PaymentsController             -actions -m Payment                 -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name PaymentTypesController         -actions -m PaymentType             -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name PercentageDiscountsController  -actions -m PercentageDiscount      -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name PersonsController              -actions -m Person                  -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name PricesController               -actions -m Price                   -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ProductsController             -actions -m Product                 -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ProductGroupsController        -actions -m ProductGroup            -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ReservationsController         -actions -m Reservation             -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ReservationistsController      -actions -m Reservationist          -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ReservationRowsController      -actions -m ReservationRow          -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ResidenciesController          -actions -m Residency               -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ResidentsController            -actions -m Resident                -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name RoomsController                -actions -m Room                    -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name RoomTypesController            -actions -m RoomType                -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name RoomTypeConveniencesController -actions -m RoomTypeConvenience     -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ReviewsController              -actions -m Review                  -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ReviewCategoriesController     -actions -m ReviewCategory          -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name CartsController                -actions -m Cart                    -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+
+========================================================================================================================
+GENERATE IDENTITY UI RAZOR PAGES (Change directory to WebApp first)
+========================================================================================================================
+dotnet aspnet-codegenerator identity -dc DAL.App.EF.AppDbContext -f
+
+========================================================================================================================
+INSTALL OR UPDATE TOOLING
+========================================================================================================================
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
+========================================================================================================================

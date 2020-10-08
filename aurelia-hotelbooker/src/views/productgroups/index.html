@@ -1,0 +1,43 @@
+<template>
+    <h1>Product groups</h1>
+
+    <p>
+        <a route-href="route: productgroup-create; params.bind: {}">Add New</a>
+    </p>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="productGroup of _productGroups">
+            <td>
+                <a route-href="route: productgroup-details; params.bind: { id: productGroup.id }">
+                    ${productGroup.name}
+                </a>
+            </td>
+            <td>
+                ${productGroup.description}
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-outline-primary" route-href="route: productgroup-edit; params.bind: { id: productGroup.id }">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" route-href="route: productgroup-delete; params.bind: { id: productGroup.id }">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

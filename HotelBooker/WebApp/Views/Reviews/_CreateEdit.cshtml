@@ -1,0 +1,22 @@
+﻿@model HotelBooker.ViewModels.ReviewsCreateEditVM
+
+<div class="form-group">
+    <label asp-for="Review.Heading" class="control-label"></label>
+    <input asp-for="Review.Heading" class="form-control" />
+    <span asp-validation-for="Review.Heading" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Review.Content" class="control-label"></label>
+    <input asp-for="Review.Content" class="form-control" />
+    <span asp-validation-for="Review.Content" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Review.ReviewCategoryId" class="control-label"></label>
+    <select asp-for="Review.ReviewCategoryId" class ="form-control" asp-items="Model.ReviewCategorySelectList"></select>
+</div>
+
+<div class="form-group">
+    <label asp-for="CustomCategoryName" class="control-label"></label>
+    <input asp-for="CustomCategoryName" class="form-control"/>
+    <span asp-validation-for="CustomCategoryName" class="text-danger"></span>
+</div>

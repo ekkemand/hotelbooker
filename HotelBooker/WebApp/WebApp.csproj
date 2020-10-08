@@ -1,0 +1,527 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UserSecretsId>aspnet-HotelBooker-5BEDCDD7-B2E9-4115-B5B6-D1241181E93A</UserSecretsId>
+        <Nullable>enable</Nullable>
+        <RootNamespace>HotelBooker</RootNamespace>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebApp.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.1.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\BLL.App\BLL.App.csproj" />
+        <ProjectReference Include="..\Contracts.BLL.App\Contracts.BLL.App.csproj" />
+        <ProjectReference Include="..\DAL.App.EF\DAL.App.EF.csproj" />
+        <ProjectReference Include="..\Extensions\Extensions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ConvenienceGroups\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ConvenienceGroups\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ConvenienceGroups\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ConvenienceGroups\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ConvenienceGroups\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Conveniences\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Conveniences\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Conveniences\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Conveniences\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Conveniences\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Currences\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Currences\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Currences\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Currences\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Currences\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\CurValues\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\CurValues\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\CurValues\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\CurValues\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\CurValues\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\HotelConveniences\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\HotelConveniences\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\HotelConveniences\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\HotelConveniences\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\HotelConveniences\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Hotels\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Hotels\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Hotels\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Hotels\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Hotels\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ImageOfRooms\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ImageOfRooms\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ImageOfRooms\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ImageOfRooms\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ImageOfRooms\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Images\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Images\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Images\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Images\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Images\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\InvoiceRows\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\InvoiceRows\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\InvoiceRows\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\InvoiceRows\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\InvoiceRows\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Invoices\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Invoices\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Invoices\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Invoices\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Invoices\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\OwnerCompanies\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\OwnerCompanies\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\OwnerCompanies\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\OwnerCompanies\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\OwnerCompanies\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Ownerships\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Ownerships\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Ownerships\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Ownerships\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Ownerships\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Payments\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Payments\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Payments\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Payments\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Payments\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PaymentTypes\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PaymentTypes\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PaymentTypes\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PaymentTypes\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PaymentTypes\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PercentageDiscounts\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PercentageDiscounts\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PercentageDiscounts\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PercentageDiscounts\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\PercentageDiscounts\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Prices\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Prices\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Prices\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Prices\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Prices\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ProductGroups\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ProductGroups\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ProductGroups\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ProductGroups\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ProductGroups\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Products\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Products\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Products\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Products\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Products\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservationists\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservationists\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservationists\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservationists\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservationists\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ReservationRows\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ReservationRows\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ReservationRows\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ReservationRows\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\ReservationRows\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservations\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservations\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservations\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservations\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Reservations\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residents\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residents\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residents\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residents\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residents\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Rooms\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Rooms\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Rooms\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Rooms\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Rooms\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypeConveniences\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypeConveniences\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypeConveniences\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypeConveniences\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypeConveniences\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypes\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypes\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypes\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypes\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\RoomTypes\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Campaigns\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Campaigns\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Campaigns\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Campaigns\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Campaigns\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserGroups\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserGroups\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserGroups\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserGroups\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserGroups\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\UserInGroups\_CreateEdit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\_CreateEdit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Residencies\_DetailsDelete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\_CreateEdit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Persons\_DetailsDelete.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\ConvenienceGroups\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\ConvenienceGroups\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\ConvenienceGroups\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\ConvenienceGroups\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\ConvenienceGroups\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Conveniences\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Conveniences\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Conveniences\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Conveniences\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Conveniences\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Currences\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Currences\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Currences\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Currences\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Currences\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\CurValues\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\CurValues\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\CurValues\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\CurValues\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\CurValues\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\HotelConveniences\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\HotelConveniences\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\HotelConveniences\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\HotelConveniences\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\HotelConveniences\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Hotels\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Hotels\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Hotels\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Hotels\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Hotels\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\ImageOfRooms\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\ImageOfRooms\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\ImageOfRooms\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\ImageOfRooms\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\ImageOfRooms\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Images\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Images\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Images\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Images\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Images\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\InvoiceRows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\InvoiceRows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\InvoiceRows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\InvoiceRows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\InvoiceRows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Invoices\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Invoices\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Invoices\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Invoices\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Invoices\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\OwnerCompanies\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\OwnerCompanies\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\OwnerCompanies\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\OwnerCompanies\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\OwnerCompanies\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ownerships\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ownerships\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ownerships\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ownerships\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ownerships\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Payments\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Payments\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Payments\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Payments\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Payments\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\PaymentTypes\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\PaymentTypes\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\PaymentTypes\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\PaymentTypes\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\PaymentTypes\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\PercentageDiscounts\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\PercentageDiscounts\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\PercentageDiscounts\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\PercentageDiscounts\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\PercentageDiscounts\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Prices\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Prices\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Prices\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Prices\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Prices\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\ProductGroups\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\ProductGroups\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\ProductGroups\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\ProductGroups\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\ProductGroups\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Products\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Products\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Products\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Products\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Products\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservationists\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservationists\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservationists\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservationists\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservationists\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\ReservationRows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\ReservationRows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\ReservationRows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\ReservationRows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\ReservationRows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservations\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservations\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservations\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservations\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Reservations\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residents\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residents\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residents\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residents\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residents\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Rooms\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Rooms\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Rooms\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Rooms\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Rooms\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypeConveniences\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypeConveniences\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypeConveniences\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypeConveniences\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypeConveniences\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypes\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypes\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypes\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypes\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\RoomTypes\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserGroups\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserGroups\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserGroups\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserGroups\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserInGroups\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Residencies\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Persons\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="Views\Hotels\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\OwnerCompanies\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Conveniences\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Conveniences\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\CurValues\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\CurValues\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ImageOfRooms\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ImageOfRooms\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Campaigns\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Campaigns\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ConvenienceGroups\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ConvenienceGroups\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Prices\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Prices\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ProductGroups\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ProductGroups\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Products\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Products\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ReservationRows\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\ReservationRows\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Rooms\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Rooms\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\RoomTypeConveniences\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\RoomTypeConveniences\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Reviews\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Reviews\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Carts\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Carts\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Users\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\RoomTypes\_DetailsDelete.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\RoomTypes\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\HotelConveniences\_CreateEdit.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Hotels\_Filter.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+
+</Project>

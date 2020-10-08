@@ -1,0 +1,37 @@
+<template>
+    <h1>Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Image Of Room</h4>
+        <hr />
+
+        <img src="${_imageOfRoom.url}" alt="Room type image"/>
+        <dl class="row mt-3">
+            <dt class = "col-sm-2">
+                Hotel
+            </dt>
+            <dd class = "col-sm-10">
+                ${_imageOfRoom.hotelName}
+            </dd>
+            <dt class = "col-sm-2">
+                Room type
+            </dt>
+            <dd class = "col-sm-10">
+                ${_imageOfRoom.roomTypeName}
+            </dd>
+            <dt if.bind="_imageOfRoom.description != null" class = "col-sm-2">
+                Descritpion
+            </dt>
+            <dd if.bind="_imageOfRoom.description != null" class = "col-sm-10">
+                ${_imageOfRoom.description}
+            </dd>
+
+        </dl>
+
+        <form submit.trigger="onDeleteClicked($event)">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a route-href="route: imageofrooms-index;">Back to List</a>
+        </form>
+    </div>
+</template>

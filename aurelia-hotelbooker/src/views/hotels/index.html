@@ -1,0 +1,106 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Hotels</h1>
+
+    <p if.bind="appState.isAdmin">
+        <a route-href="route: hotel-create; params.bind: { }">Add new</a>
+    </p>
+
+    <a if.bind="!_loading" class="btn btn-info" data-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Filters
+    </a>
+
+    <div class="collapse" id="filters">
+        <form submit.trigger="onSubmitClicked($event)" method="get">
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <label for="ownercompanyselection" class="control-label">Owners</label>
+                    <select id="ownercompanyselection" class="form-control" value.bind="_filters.ownerCompanyId">
+                        <option model.bind="null">Choose...</option>
+                        <option repeat.for="owner of _selections.ownerCompanySelection" model.bind="owner.id">${owner.name}</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <label for="convenienceselection" class="control-label">Conveniences</label>
+                    <select id="convenienceselection" class="form-control" value.bind="_filters.hotelConvenienceId">
+                        <option model.bind="null">Choose...</option>
+                        <option repeat.for="convenience of _selections.convenienceSelection" model.bind="convenience.id">${convenience.name}</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <label for="reviewcategoryselection" class="control-label">Review categories</label>
+                    <select id="reviewcategoryselection" class="form-control" value.bind="_filters.reviewCategoryId">
+                        <option model.bind="null">Choose...</option>
+                        <option repeat.for="category of _selections.reviewCategorySelection" model.bind="category.id">${category.name}</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label for="alphabeticalorder" class="control-label">Order by name</label>
+                    <select id="alphabeticalorder" class="form-control" value.bind="_filters.alphabeticalOrder">
+                        <option model.bind="null">Choose...</option>
+                        <option model.bind="'a-z'">A-Z</option>
+                        <option model.bind="'z-a'">Z-A</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label for="dateorder" class="control-label">Order by date established</label>
+                    <select id="dateorder" class="form-control" value.bind="_filters.dateEstablished">
+                        <option model.bind="null">Choose...</option>
+                        <option model.bind="'Ascending'">Ascending</option>
+                        <option model.bind="'Descending'">Descending</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input if.bind="!_submitting" type="submit" value="Submit" class="btn btn-dark"/>
+                <button if.bind="_submitting" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Submitting...
+                </button>
+                <button class="btn btn-secondary" click.trigger="onResetClicked()">Reset filters</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+
+    <p if.bind="_hotelIndexData.hotels.length === 0"><strong>No results</strong></p>
+
+    <div if.bind="!_loading && _hotelIndexData != null" class="row mt-5">
+        <div repeat.for="hotel of _hotelIndexData.hotels" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="card">
+                <img src="${hotel.imageUrl}" class="card-img-top" alt="Hotel picture">
+                <div class="card-body">
+                    <a route-href="route: hotel-details; params.bind: { id: hotel.id }">
+                        <h5 class="card-title">${hotel.name}</h5>
+                    </a>
+                    <p class="card-text">${hotel.address}</p>
+                    <p class="card-text">
+                        <strong>Stars: ${hotel.rating}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div if.bind="!_loading && _hotelIndexData == null" class="row mt-5">
+        <div repeat.for="hotel of _hotels" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="card">
+                <img src="${hotel.imageUrl}" class="card-img-top" alt="Hotel picture">
+                <div class="card-body">
+                    <a route-href="route: hotel-details; params.bind: { id: hotel.id }">
+                        <h5 class="card-title">${hotel.name}</h5>
+                    </a>
+                    <p class="card-text">${hotel.address}</p>
+                    <p class="card-text">
+                        <strong>Stars: ${hotel.rating}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

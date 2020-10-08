@@ -1,0 +1,37 @@
+<template>
+    <h1>Owner companies</h1>
+
+    <p>
+        <a route-href="route: ownercompanies-create; params.bind: {}">Add New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr repeat.for="company of _ownerCompanies">
+                <td>
+                    ${company.name}
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-outline-primary" route-href="route: ownercompany-edit; params.bind: { id: company.id }">
+                            Edit
+                        </a>
+                        <a class="btn btn-outline-info" route-href="route: ownercompany-details; params.bind: { id: company.id }">
+                            Details
+                        </a>
+                        <a class="btn btn-outline-danger" route-href="route: ownercompany-delete; params.bind: { id: company.id }">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

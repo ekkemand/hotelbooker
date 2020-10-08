@@ -1,0 +1,17 @@
+﻿@model BLL.App.DTO.RoomTypeConvenience
+
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.RoomType)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.RoomType!.Type)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Convenience)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Convenience!.Name)
+    </dd>
+        
+</dl>

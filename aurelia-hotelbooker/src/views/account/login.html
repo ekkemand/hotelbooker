@@ -1,0 +1,43 @@
+<template>
+    <div class="small-container">
+
+        <require from="../../components/alert"></require>
+
+        <alert alert-data.bind="_alert"></alert>
+
+        <h1>Log in</h1>
+        <div class="row">
+            <div class="col">
+                <section>
+                    <form id="account" method="post" submit.trigger="onSubmit($event)" autocomplete="on">
+<!--                        <h4 if.bind="_errorMessage != null" style="color:red;">${_errorMessage}</h4>-->
+                        <hr />
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input id="email" class="form-control container-item" type="email" value.bind="_email"
+                            autocomplete="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" class="form-control container-item" type="password" value.bind="_password"
+                             autocomplete="current-password" required/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button if.bind="!_logging" type="submit" class="btn btn-primary container-item">Log in</button>
+                            <button if.bind="_logging" class="btn btn-primary container-item" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Logging in...
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                Don't have an account? <a route-href="route: account-register;">Register as a new user</a>
+                            </p>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,39 @@
+<template>
+    <h1>Add</h1>
+
+    <h4>Add a new convenience</h4>
+    <hr />
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" submit.trigger="onCreateClicked($event)">
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <input id="name" class="form-control" type="text" value.bind="_convenience.name" required />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <input id="description" class="form-control" type="text" value.bind="_convenience.description" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="selection">Convenience group</label>
+                    <select id="selection" class="form-control" value.bind="_convenience.convenienceGroupId" required >
+                        <option repeat.for="convenienceGroup of _convenienceGroups" model.bind="convenienceGroup.id">${convenienceGroup.name}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: conveniences-index; params.bind: { }">Back to List</a>
+    </div>
+</template>

@@ -1,0 +1,40 @@
+<template>
+    <h1>Hotel conveniences</h1>
+
+    <p>
+        <a route-href="route: hotelconvenience-create;">Add New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Hotel
+            </th>
+            <th>
+                Convenience
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="convenience of _hotelConveniences">
+            <td>
+                ${convenience.hotelName}
+            </td>
+            <td>
+                ${convenience.convenienceName}
+            </td>
+
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a route-href="route: hotelconvenience-edit; params.bind: { id: convenience.id }"
+                       class="btn btn-outline-info">Edit</a>
+                    <a route-href="route: hotelconvenience-delete; params.bind: { id: convenience.id }"
+                       class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

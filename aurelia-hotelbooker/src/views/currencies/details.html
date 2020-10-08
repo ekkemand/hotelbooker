@@ -1,0 +1,28 @@
+<template>
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>${_currency.name}</h4>
+        <hr/>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                Name
+            </dt>
+            <dd class="col-sm-10">
+                ${_currency.name}
+            </dd>
+        </dl>
+
+    </div>
+    <form submit.trigger="onDeleteClicked($event)">
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+        <a route-href="route: currencies-index; params.bind: { }" class="btn btn-primary">Back to List</a>
+    </form>
+
+</template>

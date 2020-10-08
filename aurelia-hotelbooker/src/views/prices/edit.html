@@ -1,0 +1,56 @@
+<template>
+    <h1>Edit</h1>
+
+    <h4>Price</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+
+            <form submit.trigger="onSaveClicked($event)">
+
+                <div class="form-group">
+                    <label for="value" class="control-label">Value</label>
+                    <input id="value" value.bind="_price.value" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="currency" class="control-label">Currency</label>
+                    <select id="currency" class="form-control" value.bind="_price.currencyId" required >
+                        <option repeat.for="currency of _currencies" model.bind="currency.id">${currency.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newcurrency" class="control-label">Or add a new currency in here</label>
+                    <input id="newcurrency" value.bind="_price.newCurrency" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="campaign" class="control-label">Campaign</label>
+                    <select id="campaign" class="form-control" value.bind="_price.campaignId" required >
+                        <option model.bind="null">No campaign</option>
+                        <option repeat.for="campaign of _campaigns" model.bind="campaign.id">${campaign.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product" class="control-label">Product</label>
+                    <select id="product" class="form-control" value.bind="_price.productId" required >
+                        <option repeat.for="product of _products" model.bind="product.id">${product.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hotel" class="control-label">Hotel</label>
+                    <select id="hotel" class="form-control" value.bind="_price.hotelId" required >
+                        <option repeat.for="hotel of _hotels" model.bind="hotel.id">${hotel.name}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: prices-index;">Back to List</a>
+    </div>
+</template>

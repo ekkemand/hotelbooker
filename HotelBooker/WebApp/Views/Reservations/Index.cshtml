@@ -1,0 +1,79 @@
+@model IEnumerable<BLL.App.DTO.Reservation>
+
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+@if (User.IsInRole("admin"))
+{
+    <h1>All reservations</h1>
+}
+else
+{
+    <h1>Your reservations</h1>
+}
+
+<p>
+    For a new reservation, you can find the most suitable option from
+    <a asp-controller="Hotels" asp-action="Index">the hotels page</a>
+</p>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.StartDateTime)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfRooms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel!.Name)
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="btn-group">
+                            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>You have currently no reservations.</h3>
+}

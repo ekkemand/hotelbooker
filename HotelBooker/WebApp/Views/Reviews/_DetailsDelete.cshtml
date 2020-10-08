@@ -1,0 +1,25 @@
+﻿@using Extensions
+@model BLL.App.DTO.Review
+
+<dl class="row">
+    @if (Model.RoomType != null)
+    {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomType!.Type)
+        </dd>
+    }
+</dl>
+
+@if (Model.ReviewCategory != null)
+{
+    @if (Model.ReviewCategory!.Accepted)
+    {
+        <p class="text-primary">From category "@Model.ReviewCategory!.Name"</p>
+    }
+}
+<h5>@Model.Heading</h5>
+<p class="small">By @Model.User!.DisplayName</p>
+<p>@Model.Content</p>

@@ -1,0 +1,29 @@
+@using Extensions
+@model BLL.App.DTO.Review
+
+@{
+    ViewData["Title"] = "Review's details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.Heading</h4>
+    <hr />
+    <partial name="_DetailsDelete"/>
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.IsInRole("admin") || User.UserId() == Model.UserId)
+        {
+            <a asp-controller="Reviews" asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-info">
+                Edit
+            </a>
+            <a asp-controller="Reviews" asp-action="Delete" asp-route-Id="@Model.Id" class="btn btn-danger">
+                Delete
+            </a>
+        }
+    }
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>

@@ -1,0 +1,12 @@
+﻿@model HotelBooker.ViewModels.ProductGroupsCreateEditVM
+
+<div class="form-group">
+    <label asp-for="ProductGroup.Name" class="control-label"></label>
+    <input asp-for="ProductGroup.Name" class="form-control" />
+    <span asp-validation-for="ProductGroup.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ProductGroup.Description" class="control-label"></label>
+    <input asp-for="ProductGroup.Description" class="form-control" />
+    <span asp-validation-for="ProductGroup.Description" class="text-danger"></span>
+</div>

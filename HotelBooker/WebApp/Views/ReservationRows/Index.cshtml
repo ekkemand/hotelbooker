@@ -1,0 +1,42 @@
+@model IEnumerable<BLL.App.DTO.ReservationRow>
+
+@{
+    ViewData["Title"] = "Reservation rows";
+}
+
+<h1>Reservation rows</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation)
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reservation!.StartDateTime) -
+                @Html.DisplayFor(modelItem => item.Reservation!.EndDateTime)
+            </td>
+
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    <div class="btn-group">
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

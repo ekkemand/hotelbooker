@@ -1,0 +1,45 @@
+<template>
+    <h1>Add</h1>
+
+    <h4>Add a new campaign</h4>
+    <hr />
+
+    <require from="../../components/alert"></require>
+
+    <alert alert-data.bind="_alert"></alert>
+
+    <ul if.bind="_errors.length > 0">
+        <li repeat.for="error of _errors">${error}</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" submit.trigger="onCreateClicked($event)">
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <input id="name" ref="_nameField" class="form-control" type="text" value.bind="_campaign.name" required />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="discountFactor">Discount factor</label>
+                    <input id="discountFactor" class="form-control" type="text" value.bind="_campaign.discountFactor" required />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <input id="description" ref="_descriptionField" class="form-control" type="text" value.bind="_campaign.description" />
+                </div>
+
+                <div class="form-group">
+                    <input if.bind="!_saving" type="submit" value="Add" class="btn btn-primary" />
+                    <button if.bind="_saving" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: campaigns-index; params.bind: { }">Back to List</a>
+    </div>
+</template>

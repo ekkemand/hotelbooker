@@ -1,0 +1,44 @@
+<template>
+
+
+    <h1>Edit</h1>
+
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onCreateClicked($event)">
+
+                <div class="form-group">
+                    <label for="name" class="control-label">Name</label>
+                    <input id="name" value.bind="_product.name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label">Description</label>
+                    <textarea id="description" value.bind="_product.description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productgroupselection" class="control-label">Product group</label>
+                    <select id="productgroupselection" class="form-control" value.bind="_product.productGroupId" required >
+                        <option repeat.for="productGroup of _productGroups" model.bind="productGroup.id">${productGroup.name}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roomtypeselection" class="control-label">Room type</label>
+                    <select id="roomtypeselection" class="form-control" value.bind="_roomTypeId" required >
+                        <option model.bind="null">No room type</option>
+                        <option repeat.for="roomType of _roomTypes" model.bind="roomType.id">${roomType.type}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: products-index;">Back to List</a>
+    </div>
+</template>

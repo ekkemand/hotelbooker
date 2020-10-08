@@ -1,0 +1,17 @@
+<template>
+    <div if.bind="appState.jwt != null" class="container">
+        <div if.bind="_registered" class="alert alert-success alert-dismissible">
+            <h4 class="text text-center">Successfully registered!</h4>
+        </div>
+        <h3 class="display-3 text-center">Welcome<span if.bind="_user.displayName != null">, ${_user.displayName}</span>!</h3>
+        <p if.bind="_user.displayName != null" class="text text-center">Take a look at <a route-href="route: hotels-index;">
+            the finest hotel selection</a> we provide</p>
+    </div>
+
+    <div if.bind="appState.jwt == null" class="medium-container">
+        <h3 class="display-3 text-center mb-5">Hello!</h3>
+        <a route-href="route: account-login;" class="btn btn-outline-success container-item">Log in to get access to the best features!</a>
+        <p class="text text-center mt-4">Don't have an account?</p>
+        <a route-href="route: account-register;" class="btn btn-primary container-item">Create a new one here!</a>
+    </div>
+</template>

@@ -1,0 +1,144 @@
+@using Extensions
+@model HotelBooker.ViewModels.ReservationDetailsVM
+
+@{
+    ViewData["Title"] = "Reservation's details";
+}
+
+<h1>Reservation details</h1>
+
+<div>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.StartDateTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.StartDateTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.EndDateTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.EndDateTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.NumberOfRooms)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.NumberOfRooms)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.Hotel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.Hotel!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.Hotel!.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.Hotel!.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("admin") || User.UserId() == Model.Reservation.UserId)
+    {
+        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@Model.Reservation.Id">Delete</a>
+    }
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
+<h3 class="mb-3 mt-3">Products already included in your reservation</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Product
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.ReservationRows!)
+    {
+        <tr>
+            <th>
+                @row.Product!.Name
+            </th>
+
+            <th>
+                @if (row.Product!.RoomTypeId == null)
+                {
+                    <form asp-action="Delete" asp-controller="ReservationRows" asp-route-id="@row.Id">
+                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                    </form>
+                }
+            </th>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@if (Model.Prices != null)
+{
+    @if (Model.Prices!.Any())
+    {
+        <h3>More products</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Currency
+                </th>
+                <th>
+                    Campaign
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var price in Model.Prices)
+            {
+                <tr>
+                    <th>
+                        @price.Product!.Name
+                    </th>
+                    <th>
+                        @price.Value
+                    </th>
+                    <th>
+                        @price.Currency!.Name
+                    </th>
+                    <th>
+                        @if (price.CampaignId != null)
+                        {
+                            @(price.Campaign!.Name)
+                        }
+                    </th>
+
+                    <th>
+                        @if (price.Product!.RoomTypeId == null)
+                        {
+                            <form asp-action="Create" asp-controller="ReservationRows" asp-route-reservationId="@Model.Reservation.Id"
+                                  asp-route-productId="@price.ProductId">
+                                <input type="submit" value="Add" class="btn btn-success"/>
+                            </form>
+                        }
+                    </th>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}

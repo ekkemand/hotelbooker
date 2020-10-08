@@ -1,0 +1,132 @@
+<template>
+    <div if.bind="!_loading">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger">Delete ${_hotelDetails.hotel.name}?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this hotel? This can not be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" click.trigger="onDeleteClicked()" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img if.bind="_hotelDetails.hotel.imageUrl !== null" src="${_hotelDetails.hotel.imageUrl}" class="card-img-top">
+
+        <div class="alert alert-primary mt-3">
+            <h1 class="text-uppercase alert-heading">${_hotelDetails.hotel.name}</h1>
+            <p class="small text-dark">
+                <strong>${_hotelDetails.hotel.address}</strong>
+            </p>
+            <hr/>
+            <h4 class="text-success">
+                A
+                <span>
+            <strong>${_hotelDetails.hotel.rating}</strong>
+        </span> star hotel
+            </h4>
+
+            <a if.bind="_hotelDetails.hotel.website !== null" href=${_hotelDetails.hotel.website}" class="text-primary">Visit
+                the hotel's official website</a>
+
+            <div>
+                <dl class="row mt-3">
+                    <dt class="col-sm-2">
+                        Established
+                    </dt>
+                    <dd class="col-sm-10">
+                        ${_established}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Owner company
+                    </dt>
+                    <dd class="col-sm-10">
+                        ${_hotelDetails.hotel.ownerCompanyName}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div if.bind="_hotelDetails.groupedConveniences.length > 0" class="container">
+            <h3 class="row">Hotel's conveniences</h3>
+            <div class="row">
+                <div repeat.for="convenience of _hotelDetails.groupedConveniences"
+                     class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <h5 class="text-primary">
+                        <strong>${convenience.convenienceGroup.name}</strong>
+                    </h5>
+                    <ul>
+                        <li repeat.for="item of convenience.conveniences" class="text-primary">${item.name}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a route-href="route: hotels-index;" class="btn btn-primary">Back to List</a>
+            <a route-href="route: roomtypes-index; params.bind: { hotelId: _hotelDetails.hotel.id }" class="btn btn-info">View
+                rooms</a>
+            <a route-href="route: review-create; params.bind: { hotelId: _hotelDetails.hotel.id }" class="btn btn-info">
+                Add a review
+            </a>
+
+            <div if.bind="appState.isAdmin" class="btn-group">
+                <a route-href="route: hotel-edit; params.bind: { id: _hotelDetails.hotel.id }" class="btn btn-outline-info" >
+                    Edit
+                </a>
+                <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#deleteModal">
+                    Delete
+                </button>
+                <a route-href="route: hotelconvenience-create; params.bind: { hotelId: _hotelDetails.hotel.id }"
+                   class="btn btn-outline-info">
+                    Add a convenience
+                </a>
+                <a route-href="route: room-create; params.bind: { hotelId: _hotelDetails.hotel.id }" class="btn btn-outline-primary">
+                    Add a room
+                </a>
+                <a route-href="route: roomtype-create; params.bind: { hotelId: _hotelDetails.hotel.id }"
+                   class="btn btn-outline-primary">
+                    Add a room type
+                </a>
+            </div>
+        </div>
+
+        <div if.bind="_hotelDetails.reviews != null && _hotelDetails.reviews.length > 0" class="container mt-3">
+            <h3>User reviews to the hotel</h3>
+            <hr>
+            <div class="list-group list-group-flush">
+                <div repeat.for="review of _hotelDetails.reviews" class="list-group-item">
+                    <div class="${appState.isAuthenticated && appState.userId === review.userId ? 'alert alert-info' : ''}">
+                        <p if.bind="review.reviewCategory != null && review.reviewCategory.accepted"
+                           class="text-primary">From category "${review.reviewCategory.name}"</p>
+
+                        <h5>${review.heading}</h5>
+                        <p class="small">By ${review.userDisplayName}</p>
+                        <p>${review.content}</p>
+
+                        <div if.bind="appState.isAuthenticated">
+                            <div if.bind="appState.isAdmin || appState.userId === review.userId">
+                                <a route-href="route: review-edit; params.bind: { id: review.id }" class="btn btn-info">
+                                    Edit
+                                </a>
+                                <a route-href="route: review-delete; params.bind: { id: review.id }" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div if.bind="_loading" class="spinner-border text-primary" role="status"></div>
+</template>

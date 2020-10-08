@@ -1,0 +1,18 @@
+﻿@model BLL.App.DTO.ImageOfRoom
+
+<img src="@Url.Content(Model.Url)" alt="Room type image"/>
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Hotel)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Hotel!.Name)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.RoomType)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.RoomType!.Type)
+    </dd>
+        
+</dl>

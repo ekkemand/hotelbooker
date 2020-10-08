@@ -1,0 +1,37 @@
+<template>
+    <h1>Convenience groups</h1>
+
+    <p>
+        <a route-href="route: conveniencegroup-create; params.bind: {}">Add New</a>
+    </p>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="convenienceGroup of _convenienceGroups">
+            <td>
+                <a route-href="route: conveniencegroup-details; params.bind: { id: convenienceGroup.id }">
+                    ${convenienceGroup.name}
+                </a>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-outline-primary" route-href="route: conveniencegroup-edit; params.bind: { id: convenienceGroup.id }">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" route-href="route: conveniencegroup-delete; params.bind: { id: convenienceGroup.id }">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

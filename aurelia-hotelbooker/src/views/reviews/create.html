@@ -1,0 +1,53 @@
+<template>
+    <h1>Add a new review</h1>
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onCreateClicked($event)" method="post">
+                <div class="form-group">
+                    <label for="heading" class="control-label">Heading</label>
+                    <input id="heading" value.bind="_review.heading" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="content" class="control-label">Content</label>
+                    <textarea id="content" value.bind="_review.content" class="form-control"></textarea>
+                </div>
+                <div if.bind="_selection.length > 0">
+                    <div class="form-group">
+                        <label for="categorySelection" class="control-label">Review category</label>
+                        <select id="categorySelection" class="form-control" value.bind="_review.reviewCategoryId" required >
+                            <option repeat.for="category of _selection" model.bind="category.id">${category.name}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryString" class="control-label">Or add a new category</label>
+                        <input id="categoryString" value.bind="_review.newCategoryString" class="form-control" />
+                    </div>
+                </div>
+                <div if.bind="_selection.length === 0" class="form-group">
+                    <label for="newCategoryString" class="control-label">Add a new category</label>
+                    <input id="newCategoryString" value.bind="_review.newCategoryString" class="form-control" />
+                </div>
+
+
+                <div class="form-group">
+                    <input if.bind="!_saving" type="submit" value="Add" class="btn btn-primary"/>
+                    <button if.bind="_saving" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Adding...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a if.bind="_params.roomTypeId != null" route-href="route: roomtype-details; params.bind: { id: _params.roomTypeId }">
+            Back to the room type
+        </a>
+        <a if.bind="_params.roomTypeId == null" route-href="route: hotel-details; params.bind: { id: _params.hotelId }">
+            Back to the hotel
+        </a>
+    </div>
+</template>

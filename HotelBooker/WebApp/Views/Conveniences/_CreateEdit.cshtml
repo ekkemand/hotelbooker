@@ -1,0 +1,16 @@
+﻿@model HotelBooker.ViewModels.ConveniencesCreateEditVM
+
+<div class="form-group">
+    <label asp-for="Convenience.Name" class="control-label"></label>
+    <input asp-for="Convenience.Name" class="form-control" />
+    <span asp-validation-for="Convenience.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Convenience.Description" class="control-label"></label>
+    <input asp-for="Convenience.Description" class="form-control" />
+    <span asp-validation-for="Convenience.Description" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Convenience.ConvenienceGroupId" class="control-label"></label>
+    <select asp-for="Convenience.ConvenienceGroupId" class ="form-control" asp-items="Model.ConvenienceGroupSelectList"></select>
+</div>

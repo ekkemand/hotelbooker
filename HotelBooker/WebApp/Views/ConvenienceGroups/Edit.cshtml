@@ -1,0 +1,30 @@
+@model BLL.App.DTO.ConvenienceGroup
+
+@{
+    ViewData["Title"] = "Edit convenience group";
+}
+
+<h1>Edit</h1>
+
+<h4>Convenience group</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <partial name="_CreateEdit"/>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

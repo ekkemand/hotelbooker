@@ -1,0 +1,49 @@
+@model HotelBooker.ViewModels.HotelFilterHelperVM
+
+@{
+    ViewData["Title"] = "Hotels";
+}
+
+<h1>Hotels</h1>
+
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Create">Add New</a>
+    }
+</p>
+
+<partial name="_Filter"/>
+
+@if (Model.Hotels.Any())
+{
+    <p class="mt-2">Results: @Model.Hotels.Count()</p>
+    <div class="row mt-5">
+        @foreach (var item in Model.Hotels)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    @if (item.ImageUrl != null)
+                    {
+                        <img src="@Url.Content(item.ImageUrl)" class="card-img-top" alt="Hotel picture">
+                    }
+                    <div class="card-body">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <h5 class="card-title">@item.Name</h5>
+                        </a>
+                        <p class="card-text">@item.Address</p>
+                        <p class="card-text">
+                            <strong>Stars: @item.Rating</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>
+        <strong>Did not find any hotels for your search</strong>
+    </p>
+}

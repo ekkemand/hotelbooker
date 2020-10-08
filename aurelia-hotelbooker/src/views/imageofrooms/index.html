@@ -1,0 +1,45 @@
+<template>
+    <h1>Images of rooms</h1>
+
+    <p>
+        <a route-href="route: imageofroom-create;">Add New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>
+                Name
+            </th>
+            <th>
+                Room type
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="image of _imageOfRooms">
+            <td>
+                <img class="col-3" src="${image.url}" alt="${image.name}"/>
+            </td>
+            <td>
+                <a route-href="route: imageofroom-details; params.bind: { id: image.id }">
+                    ${image.name}
+                </a>
+            </td>
+            <td>
+                ${image.roomTypeName}
+            </td>
+
+            <td>
+                <div if.bind="appState.isAdmin" class="btn-group">
+                    <a route-href="route: imageofroom-edit; params.bind: { id: image.id }" class="btn btn-outline-info">Edit</a>
+                    <a route-href="route: imageofroom-delete; params.bind: { id: image.id }"
+                       class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

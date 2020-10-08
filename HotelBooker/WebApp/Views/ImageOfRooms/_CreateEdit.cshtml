@@ -1,0 +1,25 @@
+﻿@model HotelBooker.ViewModels.ImageOfRoomsCreateEditVM
+
+<div class="form-group">
+    <label asp-for="ImageOfRoom.Name" class="control-label"></label>
+    <input asp-for="ImageOfRoom.Name" class="form-control" />
+    <span asp-validation-for="ImageOfRoom.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ImageOfRoom.Url" class="control-label"></label>
+    <input asp-for="ImageOfRoom.Url" class="form-control" />
+    <span asp-validation-for="ImageOfRoom.Url" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ImageOfRoom.Description" class="control-label"></label>
+    <input asp-for="ImageOfRoom.Description" class="form-control" />
+    <span asp-validation-for="ImageOfRoom.Description" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ImageOfRoom.HotelId" class="control-label"></label>
+    <select asp-for="ImageOfRoom.HotelId" class ="form-control" asp-items="Model.HotelSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="ImageOfRoom.RoomTypeId" class="control-label"></label>
+    <select asp-for="ImageOfRoom.RoomTypeId" class ="form-control" asp-items="Model.RoomTypeSelectList"></select>
+</div>

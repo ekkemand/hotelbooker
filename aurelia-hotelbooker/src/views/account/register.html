@@ -1,0 +1,70 @@
+<template>
+    
+    <div id="register-page">
+        <div class="medium-container">
+            <h1>Register</h1>
+            <h4>Create a new account.</h4>
+            <hr />
+            <div id="errors">
+                <ul>
+                    <li repeat.for="error of _errors" class="text text-danger">${error}</li>
+                </ul>
+                <h4 if.bind="_serverError != null" style="color:red;">${_serverError}</h4>
+            </div>
+            <form method="post" submit.trigger="onRegister($event)" autocomplete="on">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstname">First name</label>
+                        <input id="firstname" class="form-control" type="text" ref="_firstNameField" value.bind="_firstName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastname">Last name</label>
+                        <input id="lastname" class="form-control" type="text" ref="_lastNameField" value.bind="_lastName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-8 mb-3">
+                        <label for="email">E-mail</label>
+                        <input id="email" class="form-control" type="email" ref="_emailField" value.bind="_email" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="displayname">User display name</label>
+                        <input id="displayname" class="form-control" type="text" ref="_displayNameField"
+                               autocomplete="displayname" value.bind="_displayName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="birthdate">Birth date</label>
+                        <input id="birthdate" class="form-control" type="date" ref="_bDayField" autocomplete="bday" value.bind="_birthDate" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="nationalid">National ID nr (optional)</label>
+                        <input id="nationalid" class="form-control" type="text" ref="_nationalIdNumberField" value.bind="_nationalIdNumber">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="phonenumber">Phone number (optional)</label>
+                        <input id="phonenumber" class="form-control" type="text" ref="_phoneNumberField" value.bind="_phoneNumber" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="newpassword">Password</label>
+                        <input id="newpassword" class="form-control" type="password" ref="_passwordField" value.bind="_password" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="password">Confirm password</label>
+                        <input id="password" class="form-control" type="password" ref="_confirmPasswordField" value.bind="_confirmPassword" required />
+                    </div>
+                </div>
+                <button if.bind="!_registering" class="btn btn-primary container-item" type="submit">Register</button>
+                <button if.bind="_registering" class="btn btn-primary container-item" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Registering...
+                </button>
+                <p class="text mt-2">Already have an account? <a route-href="route: account-login;">Log in.</a></p>
+            </form>
+            
+        </div>
+    </div>
+</template>

@@ -1,0 +1,39 @@
+<template>
+    <h1>Room types</h1>
+
+    <p if.bind="appState.isAdmin">
+        <a route-href="route: roomtype-create; ">Add New</a>
+    </p>
+
+    <div class="spinner-border text-primary" if.bind="_loading" role="status"></div>
+
+    <table class="table" if.bind="_roomTypes.length > 0">
+        <thead>
+        <tr>
+            <th>
+                Type
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="type of _roomTypes">
+            <td>
+                <a route-href="route: roomtype-details; params.bind: { id: type.id }">
+                    ${type.type}
+                </a>
+            </td>
+
+            <td>
+                <div class="btn-group" if.bind="appState.isAdmin">
+                    <a route-href="route: roomtype-edit; params.bind: { id: type.id }" class="btn btn-outline-info">Edit</a>
+                    <a route-href="route: roomtype-delete; params.bind: { id: type.id }" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3 if.bind="!_loading && _roomTypes.length === 0">Sorry... no room types currently available</h3>
+</template>

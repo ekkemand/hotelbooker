@@ -1,0 +1,73 @@
+<template>
+    <h1>Review categories</h1>
+
+    <p>
+        <a route-href="route: reviewcategory-create; params.bind: {}">Add New</a>
+    </p>
+    <div if.bind="_otherCategories.length > 0">
+        <h3 class="text-danger">Waiting for approval</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr repeat.for="reviewCategory of _otherCategories">
+                <td class="text-danger">
+                    ${reviewCategory.name}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success" click.delegate="acceptCategory(reviewCategory)">Accept</button>
+                        <a class="btn btn-outline-primary" route-href="route: reviewcategory-edit; params.bind: { id: reviewCategory.id }">
+                            Edit
+                        </a>
+                        <a class="btn btn-outline-danger" route-href="route: reviewcategory-delete; params.bind: { id: reviewCategory.id }">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div if.bind="_acceptedCategories.length > 0">
+        <h3 class="text-success">Accepted</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr repeat.for="reviewCategory of _acceptedCategories">
+                <td>
+                    ${reviewCategory.name}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-outline-primary" route-href="route: reviewcategory-edit; params.bind: { id: reviewCategory.id }">
+                            Edit
+                        </a>
+                        <a class="btn btn-outline-danger" route-href="route: reviewcategory-delete; params.bind: { id: reviewCategory.id }">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 if.bind="_reviewCategories.length === 0">No review categories have been added yet</h3>
+</template>
