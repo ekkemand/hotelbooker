@@ -1,4 +1,4 @@
-# hotelbooker
+# Hotel Booker
 
 ## Description
 This is the repository of my school project, called Hotel Booker. Each student had to choose their own individual topic of the web application and I chose to build an app in which the users can easily book a hotel room of their own choice, review the hotel and the room based on their experience and categorize it with a really short description, so that people can filter hotels by the categories of the reviews.
