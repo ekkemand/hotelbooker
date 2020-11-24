@@ -7,6 +7,8 @@ Only the administrators of the page can create and edit the info of the hotels, 
 
 A registered user can only edit its own posted information, nobody else's.
 
+**The app may load data slowly, because it is deployed on a student version of Azure.**
+
 ## Projects and files
 - The backend part is in HotelBooker folder
 - The frontend part is in aurelia-hotelbooker folder
